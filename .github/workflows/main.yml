@@ -15,7 +15,7 @@ jobs:
       with:
         host: 65.2.127.251
         username: ubuntu
-        key: ${{ secrets.MERN_DEPLOYMENT_EC2_PRIVATE_KEY}}
+        key: ${{ secrets.MERN_DEPLOYMENT_EC2_PRIVATE_KEY }}
         script: |
           cd ~/mern-deployment
           git pull origin master
