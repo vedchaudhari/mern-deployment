@@ -1,0 +1,26 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Deploy via SSH
+      uses: appleboy/ssh-action@v0.1.7   # pin to a release tag instead of @master
+      with:
+          host: ${{ secrets.EC2_HOST }}                # set as secret
+          username: ${{ secrets.EC2_USER }}            # set as secret, e.g. 'ubuntu'
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd ~/mern-deployment || exit 1
+            git pull origin master
+            npm install --force
+            pm2 restart mern-deploy
