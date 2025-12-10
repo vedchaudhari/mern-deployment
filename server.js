@@ -19,7 +19,7 @@ connectDB();
 app.use("/api", userRoutes);
 
 app.get("/", (req, res) => {
-    res.send("Hello Final Automated deployment World!");
+    res.send("Hello Automated World!");
 });
 
 app.listen(PORT, () => {
